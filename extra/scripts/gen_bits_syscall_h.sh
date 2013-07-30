@@ -16,18 +16,18 @@
 
 INCLUDE_OPTS="-nostdinc -I${KERNEL_HEADERS}"
 
-case $CC in
+case $GCC in
 *icc*) CC_SYSNUM_ARGS="-dM" ;;
 *)     CC_SYSNUM_ARGS="-dN" ;;
 esac
 
 ( echo "#include <asm/unistd.h>";
   echo "#include <asm/unistd.h>" |
-  $CC -E $CC_SYSNUM_ARGS $INCLUDE_OPTS - |
+  $GCC -E $CC_SYSNUM_ARGS $INCLUDE_OPTS - |
   sed -ne 's/^[ ]*#define[ ]*__NR_\([A-Za-z0-9_]*\).*/UCLIBC_\1 __NR_\1/gp' \
       -e 's/^[ ]*#undef[ ]*__NR_\([A-Za-z0-9_]*\).*/UNDEFUCLIBC_\1 __NR_\1/gp' # needed to strip out any kernel-internal defines
 ) |
-$CC -E $INCLUDE_OPTS - |
+$GCC -E $INCLUDE_OPTS - |
 ( echo "/* WARNING!!! AUTO-GENERATED FILE!!! DO NOT EDIT!!! */" ; echo ;
   echo "#ifndef _BITS_SYSNUM_H" ;
   echo "#define _BITS_SYSNUM_H" ;
