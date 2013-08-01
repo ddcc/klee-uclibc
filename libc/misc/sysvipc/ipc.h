@@ -9,7 +9,7 @@
 # define __IPC_64	0x0
 #endif
 
-#ifdef __NR_ipc
+//#ifdef __NR_ipc
 
 /* The actual system call: all functions are multiplexed by this.  */
 extern int __syscall_ipc (unsigned int __call, int __first, int __second,
@@ -29,6 +29,6 @@ extern int __syscall_ipc (unsigned int __call, int __first, int __second,
 #define IPCOP_shmget	23
 #define IPCOP_shmctl	24
 
-#endif
+//#endif
 
 #endif							/* IPC_H */
