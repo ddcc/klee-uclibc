@@ -213,7 +213,7 @@ endif
 	done
 	-chown -R `id | sed 's/^uid=\([0-9]*\).*gid=\([0-9]*\).*$$/\1:\2/'` $(PREFIX)$(DEVEL_PREFIX)include
 	# DWD - added following line:
-	cp include/kernel_types.h include/bits/kernel_types.h:q
+	cp include/kernel_types.h include/bits/kernel_types.h
 
 
 # Installs development library links.
